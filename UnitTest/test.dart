@@ -1,29 +1,23 @@
-void main() async {
-  await group(
-    'This is a Flutter test group',
-    [
-      testWidgets(
-        'Simple success',
-        MyApp(),
-        (controller) async {
-          await expect(find.text('0'), findsOneWidget, hints: [
-            PossibleHint(findsNothing,
-                'There should be a Text widget that says "0" after the first build.'),
-          ]);
-          await controller.tap(find.byType(RaisedButton));
-          await controller.pump(Duration(milliseconds: 1));
-          await expect(find.text('1'), findsOneWidget, hints: [
-            PossibleHint(findsNothing,
-                'There should be a Text widget that says "1" after the button is pressed.'),
-          ]);
-        },
-      ),
-    ],
-    reporter: (results) {
-      _result(
-        !results.any((r) => !r.success),
-        results.map((r) => r.messages ?? []).expand((i) => i).toList(),
-      );
-    },
-  );
+void main() {
+  group('Counter', () {
+    test('value should start at 0', () {
+      expect(Counter().value, 0);
+    });
+
+    test('value should be incremented', () {
+      final counter = Counter();
+
+      counter.increment();
+
+      expect(counter.value, 1);
+    });
+
+    test('value should be decremented', () {
+      final counter = Counter();
+
+      counter.decrement();
+
+      expect(counter.value, -1);
+    });
+  });
 }
