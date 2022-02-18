@@ -2,5 +2,3 @@ name: Sample Code for Flutter Testing
 mode: flutter
 files:
   - name: main.dart
-  - name: solution.dart
-  - name: test.dart
