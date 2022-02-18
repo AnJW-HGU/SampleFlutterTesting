@@ -1,4 +1,5 @@
 void main() {
+  int testNum = 0;
   testWidgets('drag 2', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     await tester.drag(find.byKey(Key('2')), Offset(500.0, 0.0));
@@ -11,9 +12,13 @@ void main() {
     final list1Finder = find.text('1').toString();
     if (list2Finder != 'zero widgets with text "2" (ignoring offstage widgets)') {
       _result(false, ['2 is dragged and not deleted.']);
+    } else {
+      testNum ++;
     }
     if (list1Finder != 'exactly one widget with text "1" (ignoring offstage widgets): Text("1", dependencies: [DefaultTextStyle, MediaQuery])') {
       _result(false, ['There is no 1, or more than two']);
+    } else {
+      testNum ++;
     }
     // print('${list2Finder}z');
     // print('${list1Finder}z');
@@ -29,7 +34,7 @@ void main() {
       scrollable: find.byType(Scrollable),
     );
     
-    await tester.drag(find.byKey(Key('99')), Offset(500.0, 0.0));
+    await tester.drag(find.byKey(Key('97')), Offset(500.0, 0.0));
     await tester.pumpAndSettle();
 
     // Verify that the item contains the correct text.
@@ -40,15 +45,21 @@ void main() {
     final list98Finder = find.text('98').toString();
     if (list99Finder != 'zero widgets with text "99" (ignoring offstage widgets)') {
       _result(false, ['2 is dragged and not deleted.']);
+    } else {
+      testNum ++;
     }
     if (list98Finder != 'exactly one widget with text "98" (ignoring offstage widgets): Text("98", dependencies: [DefaultTextStyle, MediaQuery])') {
       _result(false, ['There is no 1, or more than two']);
+    } else {
+      testNum ++;
     }
     // print('${list99Finder}z');
     // print('${list98Finder}z');
   });
   
-  testWidgets('--Test Successful--', (WidgetTester tester) async {
+  print('--Test Check--');
+  
+  if (testNum == 4) {
     _result(true);
-  });
+  }
 }
