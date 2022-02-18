@@ -45,6 +45,7 @@ void main() {
 
     final list99Finder = find.text('99').toString();
     final list98Finder = find.text('98').toString();
+    
     if (list99Finder != 'zero widgets with text "99" (ignoring offstage widgets)') {
       print('Test Failed');
       _result(false, ['2 is dragged and not deleted.']);
@@ -61,7 +62,9 @@ void main() {
     // print('${list98Finder}z');
   });
   
-  if (testNum == 4) {
-    _result(true);
-  }
+  tearDown(() async {
+    if (testNum == 4) {
+      _result(true);
+    }
+  });
 }
