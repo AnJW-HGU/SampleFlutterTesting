@@ -11,11 +11,13 @@ void main() {
     final list2Finder = find.text('2').toString();
     final list1Finder = find.text('1').toString();
     if (list2Finder != 'zero widgets with text "2" (ignoring offstage widgets)') {
+      print('Test Failed');
       _result(false, ['2 is dragged and not deleted.']);
     } else {
       testNum ++;
     }
     if (list1Finder != 'exactly one widget with text "1" (ignoring offstage widgets): Text("1", dependencies: [DefaultTextStyle, MediaQuery])') {
+      print('Test Failed');
       _result(false, ['There is no 1, or more than two']);
     } else {
       testNum ++;
@@ -44,11 +46,13 @@ void main() {
     final list99Finder = find.text('99').toString();
     final list98Finder = find.text('98').toString();
     if (list99Finder != 'zero widgets with text "99" (ignoring offstage widgets)') {
+      print('Test Failed');
       _result(false, ['2 is dragged and not deleted.']);
     } else {
       testNum ++;
     }
     if (list98Finder != 'exactly one widget with text "98" (ignoring offstage widgets): Text("98", dependencies: [DefaultTextStyle, MediaQuery])') {
+      print('Test Failed');
       _result(false, ['There is no 1, or more than two']);
     } else {
       testNum ++;
@@ -56,8 +60,6 @@ void main() {
     // print('${list99Finder}z');
     // print('${list98Finder}z');
   });
-  
-  print('--Test Check--');
   
   if (testNum == 4) {
     _result(true);
