@@ -36,7 +36,7 @@ void main() {
       scrollable: find.byType(Scrollable),
     );
     
-    await tester.drag(find.byKey(Key('97')), Offset(500.0, 0.0));
+    await tester.drag(find.byKey(Key('99')), Offset(500.0, 0.0));
     await tester.pumpAndSettle();
 
     // Verify that the item contains the correct text.
@@ -48,13 +48,13 @@ void main() {
     
     if (list99Finder != 'zero widgets with text "99" (ignoring offstage widgets)') {
       print('Test Failed');
-      _result(false, ['2 is dragged and not deleted.']);
+      _result(false, ['99 is dragged and not deleted.']);
     } else {
       testNum ++;
     }
     if (list98Finder != 'exactly one widget with text "98" (ignoring offstage widgets): Text("98", dependencies: [DefaultTextStyle, MediaQuery])') {
       print('Test Failed');
-      _result(false, ['There is no 1, or more than two']);
+      _result(false, ['There is no 98, or more than two']);
     } else {
       testNum ++;
     }
