@@ -1,31 +1,42 @@
-// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class MyWidget extends StatelessWidget {
-  final String? title;
-  final String? message;
-
-  const MyWidget({
-    Key? key,
-    @required this.title,
-    @required this.message,
-  }) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title!),
-        ),
-        body: Center(
-          child: Text(message!),
-        ),
-      ),
+      title: 'Drag App',
+      home: Scaffold(body: MyHomePage()),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var list = List.generate(100, (index) => index.toString());
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return Dismissible(
+          key: Key(list[index]),
+          onDismissed: (event) {
+            setState(() {
+              list.removeAt(index);
+            });
+          },
+          child: ListTile(title: Center(child: Text(list[index].toString()))),
+          background: Container(
+            color: Colors.amber,
+          ),
+        );
+      },
+      itemCount: list.length,
     );
   }
 }
